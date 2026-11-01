@@ -142,7 +142,6 @@ module apb_uart(
     assign tx_enable = cts && tx_mode;  // Enabling tx depending on wr and cts because we need to stop sending if cts is low
     
     assign rx_enable = rx_mode;        // only depends on rx_mode because transmitting tx will stop when rts is low
-                                      //  and fifo will be on so that data can be read by apb
                                       //  so if it depends on rts then if rx_fifo is nr_full then it will compeletely shut down rx also disabeling rd  
 
     assign fifo_tx_wr = psel && pwrite && access_start_d && (reg_no==3);  // enable fifo wr only when addr is reg3 and pwrite==1/0 to avoide writing every cycle

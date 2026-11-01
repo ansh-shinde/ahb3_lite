@@ -235,7 +235,6 @@ endtask
 
 //====================================================
 // AHB SINGLE WRITE
-// Copied from the successful write_tb_integrated
 //====================================================
 task ahb_write;
 input [31:0] addr;

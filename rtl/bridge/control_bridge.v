@@ -87,7 +87,7 @@ module control_apb(
         case (ps)
             IDLE: begin
                 if (valid) begin
-                    if (hwrite) begin  // using live hwrite as it will not change in this cycle
+                    if (hwrite) begin  
                         ns=SETUP_W;
                     end
                     else begin
@@ -145,11 +145,11 @@ module control_apb(
                     en_psel=0;
                     penable=0;
                     pwrite=0;
-                   if (hwrite_reg) begin    // not using live hwrite because suppose your current transaction is wr and next is rd 
-                       hready=1;            // so u want to make hwrite 0 before clk egde, because of combinational block change in hwrite 
-                   end                      // will trigger calculation to be done on next transaction which is rd and current wr claculation will be overwritten
-                   else begin               // using hwrite_reg we can change live hrite before clk edge and avoid metastability and also changing live hwrite will not 
-                       hready=0;           // result in triggering combi block
+                   if (hwrite_reg) begin    
+                       hready=1;            
+                   end                      
+                   else begin                 
+                       hready=0;          
                    end
                 end
                 else begin
